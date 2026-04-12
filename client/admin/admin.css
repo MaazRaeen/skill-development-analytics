@@ -1,0 +1,60 @@
+/* Admin specific overrides for the Light Theme */
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.panel-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.stat-card {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border);
+}
+
+.skill-tag {
+    background: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+/* Redesign placeholders for ABC University dashboard */
+.pie-chart {
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+}
+
+.bar-chart {
+    background-image: linear-gradient(90deg, #f0f4ff 25%, transparent 25%, transparent 50%, #f0f4ff 50%, #f0f4ff 75%, transparent 75%, transparent);
+    background-size: 40px 100%;
+}
+
+.gauge-chart {
+    width: 100px;
+    height: 50px;
+    border-radius: 100px 100px 0 0;
+    border: 8px solid var(--primary);
+    border-bottom: none;
+}
+
+@media (max-width: 1024px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+}

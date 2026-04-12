@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management | ABC University</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="student-profile.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Top Navbar -->
+        <header class="top-nav">
+            <div class="user-profile">
+                <div style="font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                    <span style="background: white; color: var(--primary); padding: 4px; border-radius: 4px;">🎓</span>
+                    ABC University
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <span>🔍</span>
+                <input type="text" id="globalSearch" placeholder="Search 125 students across departments...">
+            </div>
+
+            <div class="nav-actions">
+                <span>📍</span>
+                <span>🔔</span>
+                <span>❓</span>
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop" class="user-avatar" alt="User">
+            </div>
+        </header>
+
+        <div class="main-container">
+            <!-- Left Sidebar -->
+            <aside class="sidebar">
+                <nav>
+                    <a href="/" class="sidebar-link">
+                        <span>🏠</span> Home
+                    </a>
+                    <a href="/admin/index.html" class="sidebar-link">
+                        <span>📊</span> Analytics
+                    </a>
+                    <a href="/admin/students.html" class="sidebar-link active">
+                        <span>👥</span> Students
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <span>📋</span> Administration <span style="margin-left: auto;">›</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <span>👤</span> Admissions <span style="margin-left: auto;">›</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <span>🎓</span> Faculty <span style="margin-left: auto;">›</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <span>🏢</span> Services
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <span>📞</span> Contacts
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <div class="flex-between mb-1">
+                    <h2 style="color: var(--primary); font-size: 1.5rem; font-weight: 700;">Student Directory</h2>
+                    <div style="display: flex; gap: 1rem;">
+                        <select id="deptFilter" class="card p-short" style="padding: 8px 16px; border: 1px solid var(--border); border-radius: 8px; font-weight: 600;">
+                            <option value="">All Departments</option>
+                        </select>
+                        <div class="card p-short" style="padding: 8px 16px; border-radius: 8px; font-weight: 700; color: var(--primary); background: #e8eaf6;">
+                            Total: 125 Students
+                        </div>
+                    </div>
+                </div>
+
+                <div id="studentGroups" class="student-groups-container">
+                    <!-- Populated by JS -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Student Detail Overlay -->
+    <div id="studentDetailOverlay" class="overlay hidden">
+        <div class="overlay-content card">
+            <button class="close-overlay" id="closeOverlay">&times;</button>
+            <div id="detailContent">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="students.js"></script>
+</body>
+</html>

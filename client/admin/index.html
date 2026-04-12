@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Analytics | ABC University</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .chart-container-large {
+            height: 300px;
+            position: relative;
+            margin-top: 1.5rem;
+        }
+        .anim-bar-group {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 1rem;
+            border-bottom: 2px solid #f0f2f5;
+        }
+        .anim-bar {
+            width: 38px;
+            background: linear-gradient(to top, var(--primary), var(--accent));
+            border-radius: 8px 8px 0 0;
+            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .anim-bar:hover {
+            filter: brightness(1.2);
+            cursor: pointer;
+            transform: scaleX(1.1);
+        }
+        .bar-label {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .stat-card-premium {
+            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        .stat-card-premium:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .chart-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Top Navbar -->
+        <header class="top-nav">
+            <div class="user-profile">
+                <div style="font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                    <span style="background: white; color: var(--primary); padding: 4px; border-radius: 4px;">🎓</span>
+                    ABC University
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <span>🔍</span>
+                <input type="text" id="globalSearch" placeholder="Filter executive metrics...">
+            </div>
+
+            <div class="nav-actions">
+                <span>📍</span>
+                <span>🔔</span>
+                <div class="badge badge-primary" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);">H1 2026 DASHBOARD</div>
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop" class="user-avatar" alt="User">
+            </div>
+        </header>
+
+        <div class="main-container">
+            <!-- Left Sidebar -->
+            <aside class="sidebar">
+                <nav>
+                    <a href="/" class="sidebar-link"><span>🏠</span> Home</a>
+                    <a href="/admin/index.html" class="sidebar-link active"><span>📊</span> Analytics</a>
+                    <a href="/admin/students.html" class="sidebar-link"><span>👥</span> Students</a>
+                    <a href="#" class="sidebar-link"><span>📋</span> Administration <span style="margin-left: auto;">›</span></a>
+                    <a href="#" class="sidebar-link"><span>👤</span> Admissions <span style="margin-left: auto;">›</span></a>
+                    <a href="#" class="sidebar-link"><span>🎓</span> Faculty <span style="margin-left: auto;">›</span></a>
+                    <a href="#" class="sidebar-link"><span>🏢</span> Services</a>
+                    <a href="#" class="sidebar-link"><span>📞</span> Contacts</a>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <div class="flex-between mb-1">
+                    <div>
+                        <h2 style="color: var(--primary); font-size: 1.8rem; font-weight: 800; margin-bottom: 4px;">Executive Analytics Portals</h2>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 600;">Consolidated Academic & Institutional Intelligence Dashboard.</p>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn btn-secondary" onclick="location.reload()">↺ Sync Snapshot</button>
+                        <button class="btn btn-primary" style="box-shadow: 0 4px 15px rgba(26, 35, 126, 0.3);">⬇ GENERATE REPORT</button>
+                    </div>
+                </div>
+
+                <!-- Premium Stats Grid -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div class="card stat-card-premium">
+                        <span style="font-size: 0.7rem; font-weight: 900; color: var(--text-muted); letter-spacing: 1.2px;">ACTIVE ENROLLMENT</span>
+                        <div style="font-size: 2.22rem; font-weight: 900; color: var(--primary); margin: 8px 0;" id="totalStudents">0</div>
+                        <span style="font-size: 0.75rem; color: var(--success); font-weight: 800;">↑ 12.4% Annual Organic</span>
+                    </div>
+                    <div class="card stat-card-premium">
+                        <span style="font-size: 0.7rem; font-weight: 900; color: var(--text-muted); letter-spacing: 1.2px;">NET SATISFACTION (NPS)</span>
+                        <div style="font-size: 2.22rem; font-weight: 900; color: var(--primary); margin: 8px 0;">9.4/10</div>
+                        <span style="font-size: 0.75rem; color: var(--success); font-weight: 800;">↑ High Operational Status</span>
+                    </div>
+                    <div class="card stat-card-premium">
+                        <span style="font-size: 0.7rem; font-weight: 900; color: var(--text-muted); letter-spacing: 1.2px;">AVG CUMULATIVE GPA</span>
+                        <div style="font-size: 2.22rem; font-weight: 900; color: var(--primary); margin: 8px 0;" id="avgGpa">0.00</div>
+                        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 800;">Benchmark: Tier-1 Univ.</span>
+                    </div>
+                    <div class="card stat-card-premium">
+                        <span style="font-size: 0.7rem; font-weight: 900; color: var(--text-muted); letter-spacing: 1.2px;">RESEARCH OUTPUT (H-INDEX)</span>
+                        <div style="font-size: 2.22rem; font-weight: 900; color: var(--primary); margin: 8px 0;">34.8</div>
+                        <span style="font-size: 0.75rem; color: var(--warning); font-weight: 800;">← 2.1% Ahead of Target</span>
+                    </div>
+                </div>
+
+                <!-- Main Analytics Section -->
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+                    <div class="card">
+                        <h3 style="font-weight: 900; color: var(--primary); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Departmental Performance Benchmark</h3>
+                        <div class="chart-container-large">
+                            <div class="anim-bar-group" id="deptBars">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                        <div style="margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; border-top: 1px dashed #eee; padding-top: 1.5rem;">
+                             <div class="legend-item"><span class="dot" style="background:var(--primary)"></span> Engineering Division</div>
+                             <div class="legend-item"><span class="dot" style="background:var(--accent)"></span> Science Faculty</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="font-weight: 900; color: var(--primary); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 2rem;">Operational Allocation</h3>
+                        <div style="display: flex; justify-content: center; position: relative; margin-top: 2rem;">
+                            <svg width="240" height="240" viewBox="0 0 42 42" class="pie-svg">
+                                <circle class="pie-slice" cx="21" cy="21" r="15.915" fill="transparent" stroke="#f0f2f5" stroke-width="6"></circle>
+                                <circle class="pie-slice" cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--primary)" stroke-width="6" stroke-dasharray="75 25" stroke-dashoffset="25"></circle>
+                                <circle class="pie-slice" cx="21" cy="21" r="15.915" fill="transparent" stroke="#448aff" stroke-width="6" stroke-dasharray="15 85" stroke-dashoffset="50"></circle>
+                            </svg>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                                <div style="font-size: 1.8rem; font-weight: 900; color: var(--primary);">125</div>
+                                <div style="font-size: 0.65rem; color: var(--text-muted); font-weight: 900;">ACTIVE CORE</div>
+                            </div>
+                        </div>
+                        <div class="mt-2" style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
+                            <div class="flex-between mb-1">
+                                <span style="font-size: 0.75rem; font-weight: 800;">ENGINEERING</span>
+                                <span style="font-size: 0.75rem; font-weight: 900; color: var(--primary);">75.0%</span>
+                            </div>
+                            <div class="flex-between">
+                                <span style="font-size: 0.75rem; font-weight: 800;">SCIENCES</span>
+                                <span style="font-size: 0.75rem; font-weight: 900; color: #448aff;">15.0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Visuals Grid -->
+                <div class="chart-grid-2">
+                    <div class="card">
+                        <h3 style="font-weight: 900; color: var(--primary); text-transform: uppercase; font-size: 0.9rem;">Global Placement Track (Fall '25 - Spring '26)</h3>
+                        <div style="height: 200px; margin-top: 1.5rem; display: flex; align-items: flex-end; gap: 10px; padding: 0 1rem; position: relative;">
+                             <!-- Mock Line Chart Path using bars for simplicity and high visual impact -->
+                             ${[45, 52, 48, 65, 78, 85, 92, 88, 94, 98].map(h => `<div style="flex: 1; height: ${h}%; background: rgba(68, 138, 255, 0.1); border-top: 3px solid var(--accent); border-radius: 2px;"></div>`).join('')}
+                             <div style="position: absolute; top: 10px; right: 10px; background: var(--success); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.6rem; font-weight: 900;">EXECUTIVE TARGET MET</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                         <h3 style="font-weight: 900; color: var(--primary); text-transform: uppercase; font-size: 0.9rem;">Average Institutional Resilience</h3>
+                         <div style="display: flex; gap: 2rem; margin-top: 1.5rem;">
+                              <div style="flex: 1; text-align: center;">
+                                   <div style="font-size: 2rem; font-weight: 900; color: var(--primary);">A++</div>
+                                   <div style="font-size: 0.65rem; font-weight: 900; color: var(--text-muted);">FINANCIAL STABILITY</div>
+                              </div>
+                              <div style="flex: 1; text-align: center;">
+                                   <div style="font-size: 2rem; font-weight: 900; color: var(--accent);">99.2%</div>
+                                   <div style="font-size: 0.65rem; font-weight: 900; color: var(--text-muted);">RECRUITER SATISFACTION</div>
+                              </div>
+                         </div>
+                         <div class="mt-2" style="padding: 1rem; background: #e8eaf6; border-radius: 12px; font-size: 0.75rem; color: var(--primary); font-weight: 700; text-align: center;">
+                             ⭐ ACCREDITED BY GLOBAL ACADEMIC ALLIANCE 2026
+                         </div>
+                    </div>
+                </div>
+
+                <div class="card mt-2">
+                    <div class="p-1 border-bottom flex-between">
+                        <h3 style="font-weight: 900; color: var(--primary); text-transform: uppercase; font-size: 0.9rem;">High-Status Academic Performers</h3>
+                        <a href="students.html" class="btn btn-secondary" style="font-size: 0.7rem; font-weight: 800;">Directory Deep-Dive</a>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Dean's List Candidate</th>
+                                    <th>Department</th>
+                                    <th>Rank Status</th>
+                                    <th>Cumulative GPA</th>
+                                    <th>Executive Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentList">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
