@@ -23,7 +23,7 @@ const generateStudents = () => {
             students.push({
                 id,
                 name,
-                email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@abc.edu`,
+                email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@sharda.ac.in`,
                 department: dept,
                 gpa,
                 attendance,
@@ -33,6 +33,18 @@ const generateStudents = () => {
                     { name: 'Research', level: 78 },
                     { name: 'Communication', level: 92 }
                 ],
+                softSkills: {
+                    mip: Math.floor(Math.random() * 20 + 75), // Mock Interview Prep
+                    gd: Math.floor(Math.random() * 30 + 60),  // Group Discussion
+                    weeklyTests: [78, 82, 85, 88, 92],        // Cycle progression
+                    topics: [
+                        { name: 'Technical Articulation', score: 88 },
+                        { name: 'Crisis Logic', score: 82 },
+                        { name: 'Collaborative Flow', score: 90 },
+                        { name: 'Language Precision', score: 85 }
+                    ],
+                    feedback: "Exceptional analytical depth. Needs to focus on non-verbal cues during GD sessions to maintain team leadership."
+                },
                 performance: [
                     { category: 'Midterm Exam', type: 'Exam', score: 88, notes: 'Solid performance in core concepts.' },
                     { category: 'Final Project', type: 'Project', score: 94, notes: 'Exceptional creativity and execution.' },
