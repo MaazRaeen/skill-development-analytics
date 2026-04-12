@@ -10,87 +10,63 @@
 </head>
 <body>
     <div class="app-wrapper">
-        <!-- Top Navbar -->
-        <header class="top-nav">
-            <div class="user-profile">
-                <div style="font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
-                    <span style="background: white; color: var(--primary); padding: 4px; border-radius: 4px;">🎓</span>
-                    ABC University
-                </div>
-            </div>
-            
-            <div class="search-container">
-                <span>🔍</span>
-                <input type="text" id="globalSearch" placeholder="Search 125 students across departments...">
-            </div>
+        <!-- Unified Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">ABC Analytics</div>
+            <nav>
+                <a href="/" class="sidebar-link"><span>🏠</span> Home Portal</a>
+                <a href="/admin/index.html" class="sidebar-link"><span>📈</span> Analytics Hub</a>
+                <a href="/admin/students.html" class="sidebar-link active"><span>👥</span> Student Directory</a>
+                <a href="/student/index.html" class="sidebar-link"><span>👤</span> Personal Records</a>
+                <a href="#" class="sidebar-link"><span>📋</span> Admissions</a>
+            </nav>
+        </aside>
 
-            <div class="nav-actions">
-                <span>📍</span>
-                <span>🔔</span>
-                <span>❓</span>
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop" class="user-avatar" alt="User">
-            </div>
-        </header>
-
+        <!-- Main Workspace -->
         <div class="main-container">
-            <!-- Left Sidebar -->
-            <aside class="sidebar">
-                <nav>
-                    <a href="/" class="sidebar-link">
-                        <span>🏠</span> Home
-                    </a>
-                    <a href="/admin/index.html" class="sidebar-link">
-                        <span>📊</span> Analytics
-                    </a>
-                    <a href="/admin/students.html" class="sidebar-link active">
-                        <span>👥</span> Students
-                    </a>
-                    <a href="#" class="sidebar-link">
-                        <span>📋</span> Administration <span style="margin-left: auto;">›</span>
-                    </a>
-                    <a href="#" class="sidebar-link">
-                        <span>👤</span> Admissions <span style="margin-left: auto;">›</span>
-                    </a>
-                    <a href="#" class="sidebar-link">
-                        <span>🎓</span> Faculty <span style="margin-left: auto;">›</span>
-                    </a>
-                    <a href="#" class="sidebar-link">
-                        <span>🏢</span> Services
-                    </a>
-                    <a href="#" class="sidebar-link">
-                        <span>📞</span> Contacts
-                    </a>
-                </nav>
-            </aside>
+            <header class="top-header">
+                <div class="search-bar">
+                    <span>🔍</span>
+                    <input type="text" id="globalSearch" placeholder="Filter by name, ID, or department...">
+                </div>
+                <div style="display: flex; align-items: center; gap: 2rem;">
+                    <select id="deptFilter" style="background: var(--bg-main); border: 1px solid var(--border); padding: 8px 16px; border-radius: 12px; font-weight: 700;">
+                        <option value="all">All Departments</option>
+                    </select>
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop" class="user-avatar" alt="User">
+                </div>
+            </header>
 
-            <!-- Main Content Area -->
             <main class="main-content">
                 <div class="flex-between mb-1">
-                    <h2 style="color: var(--primary); font-size: 1.5rem; font-weight: 700;">Student Directory</h2>
-                    <div style="display: flex; gap: 1rem;">
-                        <select id="deptFilter" class="card p-short" style="padding: 8px 16px; border: 1px solid var(--border); border-radius: 8px; font-weight: 600;">
-                            <option value="">All Departments</option>
-                        </select>
-                        <div class="card p-short" style="padding: 8px 16px; border-radius: 8px; font-weight: 700; color: var(--primary); background: #e8eaf6;">
-                            Total: 125 Students
-                        </div>
-                    </div>
+                    <h1 style="font-size: 1.8rem; font-weight: 800;">Academic Records Management</h1>
+                    <span id="studentCount" class="badge" style="background: var(--primary); color: white;">125 TOTAL STUDENTS</span>
                 </div>
 
-                <div id="studentGroups" class="student-groups-container">
-                    <!-- Populated by JS -->
+                <div class="table-container card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student Identity</th>
+                                <th>Department</th>
+                                <th>Cumulative GPA</th>
+                                <th>Performance Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
                 </div>
             </main>
         </div>
     </div>
 
-    <!-- Student Detail Overlay -->
-    <div id="studentDetailOverlay" class="overlay hidden">
-        <div class="overlay-content card">
-            <button class="close-overlay" id="closeOverlay">&times;</button>
-            <div id="detailContent">
-                <!-- Populated by JS -->
-            </div>
+    <!-- Student Profile Modal (Legacy but kept for backup if needed, though we redirect now) -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content profile-modal animate-fade">
+            <button class="close-btn" onclick="document.getElementById('profileModal').style.display='none'">&times;</button>
+            <div id="modalBody"></div>
         </div>
     </div>
 

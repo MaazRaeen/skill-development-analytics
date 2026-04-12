@@ -1,158 +1,182 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-
 :root {
     --primary: #1a237e;
-    --primary-light: #534bae;
-    --primary-dark: #000051;
-    --accent: #448aff;
-    --bg-light: #f5f7fb;
-    --bg-white: #ffffff;
-    --text-main: #333333;
-    --text-muted: #757575;
-    --border: #e0e4ec;
-    --hover-bg: #f0f4ff;
+    --primary-light: #448aff;
+    --secondary: #e8eaf6;
+    --accent: #ff4081;
     --success: #4caf50;
-    --warning: #ff9800;
+    --warning: #ffcf2a;
+    --error: #ff5252;
+    --sidebar-bg: #1a237e;
+    --sidebar-text: #ffffff;
+    --sidebar-hover: rgba(255,255,255,0.1);
+    --bg-main: #f8faff;
+    --bg-light: #ffffff;
+    --text-main: #2c3e50;
+    --text-muted: #7f8c8d;
+    --border: #eaedf2;
+    --shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-    background: var(--bg-light);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
     color: var(--text-main);
-    min-height: 100vh;
+    line-height: 1.5;
     overflow-x: hidden;
 }
 
-/* Layout Structure */
 .app-wrapper {
     display: flex;
-    flex-direction: column;
     min-height: 100vh;
 }
 
-.top-nav {
-    height: 64px;
-    background: var(--primary);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.main-container {
-    display: flex;
-    margin-top: 64px;
-    flex: 1;
-}
-
+/* Redesigned Minimal Sidebar */
 .sidebar {
     width: 260px;
-    background: var(--bg-white);
-    border-right: 1px solid var(--border);
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
     position: fixed;
-    top: 64px;
-    bottom: 0;
-    left: 0;
-    padding: 1.5rem 0;
-    z-index: 900;
+    height: 100vh;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
 }
 
-.main-content {
-    flex: 1;
-    margin-left: 260px;
-    padding: 2rem;
-    min-height: calc(100vh - 64px);
+.sidebar-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+    padding-left: 0.5rem;
 }
 
-/* Sidebar Nav */
 .sidebar-link {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.8rem 2rem;
+    gap: 12px;
+    padding: 0.9rem 1rem;
+    color: rgba(255,255,255,0.7);
     text-decoration: none;
-    color: var(--text-muted);
-    font-weight: 500;
-    transition: all 0.2s ease;
-    border-left: 4px solid transparent;
-}
-
-.sidebar-link:hover {
-    background: var(--hover-bg);
-    color: var(--primary);
-}
-
-.sidebar-link.active {
-    background: #e8eaf6;
-    color: var(--primary);
-    border-left-color: var(--primary);
-    font-weight: 700;
-}
-
-/* Navbar Search & Profile */
-.search-container {
-    background: rgba(255,255,255,0.15);
-    border-radius: 99px;
-    padding: 8px 16px;
-    width: 400px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.search-container input {
-    background: transparent;
-    border: none;
-    color: white;
-    width: 100%;
-    outline: none;
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.user-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #eee;
-}
-
-/* Cards & Containers */
-.card {
-    background: var(--bg-white);
     border-radius: 12px;
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
-/* Tables */
-.table-container {
+.sidebar-link:hover, .sidebar-link.active {
+    background: var(--sidebar-hover);
+    color: white;
+}
+
+.sidebar-link .badge {
+    margin-left: auto;
+    background: var(--accent);
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    border-radius: 99px;
+}
+
+/* Main Container Layout */
+.main-container {
+    flex: 1;
+    margin-left: 260px;
+}
+
+.top-header {
+    height: 80px;
+    background: white;
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.search-bar {
+    background: #f0f2f5;
+    border-radius: 12px;
+    padding: 0.6rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 350px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
     width: 100%;
-    overflow-x: auto;
+}
+
+.main-content {
+    padding: 2.5rem 3.5rem;
+}
+
+/* Modern Card Component */
+.card {
+    background: var(--bg-light);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge {
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-weight: 800;
+    font-size: 0.7rem;
+    display: inline-block;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    filter: brightness(1.2);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--primary);
+}
+
+/* Table Design */
+.table-container {
+    margin-top: 1.5rem;
 }
 
 table {
@@ -162,85 +186,33 @@ table {
 
 th {
     text-align: left;
-    padding: 1rem;
-    border-bottom: 2px solid var(--border);
     color: var(--text-muted);
-    font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 800;
     text-transform: uppercase;
-}
-
-td {
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     border-bottom: 1px solid var(--border);
 }
 
-tr:hover td {
-    background: var(--hover-bg);
-}
-
-/* Buttons */
-.btn {
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+td {
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
     font-weight: 600;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
 }
 
-.btn-primary { background: var(--primary); color: white; }
-.btn-primary:hover { background: var(--primary-dark); }
-
-.btn-secondary { background: #eee; color: var(--text-main); }
-.btn-secondary:hover { background: #e0e0e0; }
-
-/* Utilities */
-.flex-between { display: flex; justify-content: space-between; align-items: center; }
-.flex-column { display: flex; flex-direction: column; }
-.items-center { align-items: center; }
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
-.mb-1 { margin-bottom: 1rem; }
-.border-bottom { border-bottom: 1px solid var(--border); }
-.p-1 { padding: 1rem; }
-.p-2 { padding: 2rem; }
-.text-muted { color: var(--text-muted); }
-.hidden { display: none !important; }
-
-/* Dashboard Specific */
-.analytics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-.chart-mock {
-    height: 180px;
-    background: #f8fafc;
+.user-avatar {
+    width: 40px;
+    height: 40px;
     border-radius: 12px;
-    border: 1px dashed var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
 }
 
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-right: 1rem;
+.animate-fade {
+    animation: fadeIn 1s ease forwards;
 }
 
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

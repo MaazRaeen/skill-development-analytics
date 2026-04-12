@@ -3,100 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Performance | ABC University</title>
+    <title>SaaS Analytics | ABC University</title>
     <link rel="stylesheet" href="../shared/styles.css">
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="student-profile.css">
-    <style>
-        .performance-header {
-            background: linear-gradient(135deg, var(--primary) 0%, #3f51b5 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-        .progression-chart {
-            height: 300px;
-            background: #f8fafc;
-            border-radius: 20px;
-            position: relative;
-            margin-top: 2rem;
-            display: flex;
-            align-items: flex-end;
-            padding: 0 2rem 3rem;
-            gap: 2rem;
-        }
-        .progression-node {
-            flex: 1;
-            background: linear-gradient(to top, var(--accent), #82b1ff);
-            border-radius: 10px 10px 0 0;
-            position: relative;
-            transition: height 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .node-label {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.7rem;
-            font-weight: 800;
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-        .radar-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-        .skill-item-large {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            border-bottom: 2px solid #f0f2f5;
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-        }
-    </style>
 </head>
 <body>
     <div class="app-wrapper">
-        <!-- Top Navbar -->
-        <header class="top-nav">
-            <div class="user-profile">
-                <div style="font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
-                    <span style="background: white; color: var(--primary); padding: 4px; border-radius: 4px;">🎓</span>
-                    ABC University
-                </div>
-            </div>
-            <div class="nav-actions">
-                <a href="students.html" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); color: white; border: none;">← Back to Directory</a>
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop" class="user-avatar" alt="User">
-            </div>
-        </header>
+        <!-- Site Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">ABC Analytics</div>
+            <nav>
+                <a href="/" class="sidebar-link"><span>🏠</span> Home Portal</a>
+                <a href="/admin/index.html" class="sidebar-link"><span>📈</span> Analytics Hub</a>
+                <a href="/admin/students.html" class="sidebar-link active"><span>👥</span> Student Directory</a>
+                <a href="/student/index.html" class="sidebar-link"><span>👤</span> Personal Records</a>
+                <a href="#" class="sidebar-link"><span>📋</span> Admissions</a>
+            </nav>
+        </aside>
 
+        <!-- Main Workspace -->
         <div class="main-container">
-            <!-- Left Sidebar -->
-            <aside class="sidebar">
-                <nav>
-                    <a href="/" class="sidebar-link"><span>🏠</span> Home</a>
-                    <a href="/admin/index.html" class="sidebar-link"><span>📊</span> Analytics</a>
-                    <a href="/admin/students.html" class="sidebar-link active"><span>👥</span> Students</a>
-                    <a href="#" class="sidebar-link"><span>📋</span> Administration</a>
-                    <a href="#" class="sidebar-link"><span>👤</span> Admissions</a>
-                    <a href="#" class="sidebar-link"><span>🎓</span> Faculty</a>
-                </nav>
-            </aside>
+            <header class="top-header">
+                <div class="search-bar">
+                    <span>🔍</span>
+                    <input type="text" placeholder="Global analytic search...">
+                </div>
+                <div style="display: flex; align-items: center; gap: 2rem;">
+                    <a href="students.html" class="btn btn-secondary" style="font-weight: 800; font-size: 0.75rem;">← BACK TO RECORDS</a>
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop" class="user-avatar" alt="User">
+                </div>
+            </header>
 
-            <!-- Main Content Area -->
-            <main class="main-content">
-                <div id="performanceContent">
-                    <!-- Loading State -->
-                    <div style="text-align: center; padding: 5rem;">
-                        <h2 style="color: var(--primary);">Loading Performance Data...</h2>
-                    </div>
+            <main class="main-content" id="performanceContent">
+                <!-- Data will be injected here by performance.js -->
+                <div style="text-align: center; padding: 10rem;">
+                    <h2 style="color: var(--primary);">INITIALIZING SAAS PERFORMANCE CLOUD...</h2>
                 </div>
             </main>
         </div>
